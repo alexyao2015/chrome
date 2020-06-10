@@ -17,9 +17,9 @@ RUN apt-get update \
 	eterm
 
 RUN apt-get install curl -y --no-install-recommends \
-	&& curl -o /tmp/ https://dl.google.com/linux/linux_signing_key.pub \
-	&& curl -o /tmp/ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-	&& curl -o /tmp/ https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb \
+	&& curl -o /tmp/linux_signing_key.pub https://dl.google.com/linux/linux_signing_key.pub \
+	&& curl -o /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+	&& curl -o /tmp/chrome-remote-desktop_current_amd64.deb https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb \
 	&& apt-get remove curl -y \
 	&& apt-key add /tmp/linux_signing_key.pub \
 	&& gdebi --non-interactive /tmp/google-chrome-stable_current_amd64.deb \
