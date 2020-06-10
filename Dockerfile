@@ -6,6 +6,7 @@ COPY copyables /
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
+	ca-certificates \
 	gdebi \
 	gnupg2 \
 	fonts-noto-cjk \
