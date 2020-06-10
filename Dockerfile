@@ -24,7 +24,6 @@ RUN apt-get install curl -y --no-install-recommends \
 	&& apt-key add /tmp/linux_signing_key.pub \
 	&& gdebi --non-interactive /tmp/google-chrome-stable_current_amd64.deb \
 	&& gdebi --non-interactive /tmp/chrome-remote-desktop_current_amd64.deb \
-	&& apt-get clean \
 	&& rm -rf /var/cache/* /var/log/apt/* /var/lib/apt/lists/* /tmp/*
 
 RUN useradd -m -G chrome-remote-desktop,pulse-access chrome \
