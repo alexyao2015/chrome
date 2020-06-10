@@ -29,6 +29,7 @@ RUN apt install curl -y --no-install-recommends \
 
 RUN useradd -m -G chrome-remote-desktop,pulse-access chrome \
 	&& usermod -s /bin/bash chrome \
+	&& mkdir -p /home/chrome/profile \
 	&& mkdir -p /home/chrome/.fluxbox \
 	&& echo ' \n\
 		session.screen0.toolbar.visible:        false\n\
@@ -37,7 +38,7 @@ RUN useradd -m -G chrome-remote-desktop,pulse-access chrome \
 		session.screen0.maxDisableMove: true\n\
 		session.screen0.defaultDeco:    NONE\n\
 	' >> /home/chrome/.fluxbox/init \
-	&& chown -R chrome:chrome /home/chrome/.config /home/chrome/.fluxbox
+	&& chown -R chrome:chrome /home/chrome/profile /home/chrome/.fluxbox
 
 VOLUME ["/home/chrome"]
 
