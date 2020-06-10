@@ -1,3 +1,7 @@
+<!--<a href="https://travis-ci.com/alexyao2015/cloud-media-scripts"><img alt="Travis CI builds" src="https://travis-ci.com/alexyao2015/cloud-media-scripts.svg?branch=master"></a>-->
+<a href="https://github.com/alexyao2015/chrome/actions"><img alt="GitHub Actions Build" src="https://github.com/alexyao2015/chrome/workflows/Deploy/badge.svg"></a>
+<a href="https://hub.docker.com/r/yaoa/chrome"><img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/yaoa/chrome.svg"></a>
+
  - The testing branch for [RandR](https://en.wikipedia.org/wiki/RandR) (i.e. "Resize desktop to fit" in CRD client) is merged into master/latest.
 
 Google Chrome via VNC

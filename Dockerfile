@@ -5,7 +5,7 @@ ENV VNC_SCREEN_SIZE 1024x768
 COPY copyables /
 
 RUN apt-get update \
-	&& apt-get install -y --no-install-recommends --no-cache \
+	&& apt-get install -y --no-install-recommends \
 	gdebi \
 	gnupg2 \
 	fonts-noto-cjk \
@@ -15,7 +15,7 @@ RUN apt-get update \
 	fluxbox \
 	eterm
 
-RUN apt-get install curl -y --no-install-recommends --no-cache \
+RUN apt-get install curl -y --no-install-recommends \
 	&& curl -o /tmp/ https://dl.google.com/linux/linux_signing_key.pub \
 	&& curl -o /tmp/ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
 	&& curl -o /tmp/ https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb \
