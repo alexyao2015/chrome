@@ -23,6 +23,7 @@ RUN apt install curl -y --no-install-recommends \
 	&& curl -o /tmp/chrome-remote-desktop_current_amd64.deb https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb \
 	&& apt remove curl -y \
 	&& apt-key add /tmp/linux_signing_key.pub \
+	&& apt install -y --no-install-recommends /tmp/google-chrome-stable_current_amd64.deb \
 	&& apt install -y --no-install-recommends /tmp/chrome-remote-desktop_current_amd64.deb \
 	&& apt-get clean \
 	&& rm -rf /var/cache/* /var/log/apt/* /var/lib/apt/lists/* /tmp/*
