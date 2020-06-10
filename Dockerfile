@@ -14,7 +14,8 @@ RUN apt-get update \
 	supervisor \
 	x11vnc \
 	fluxbox \
-	eterm
+	eterm \
+	xz-utils
 
 RUN apt-get install curl -y --no-install-recommends \
 	&& curl -o /tmp/linux_signing_key.pub https://dl.google.com/linux/linux_signing_key.pub \
