@@ -10,10 +10,6 @@ jobs:
     name: Build And Deploy
     steps:
       - uses: actions/checkout@v2
-      - name: Event Name
-        run: |
-          echo "$GITHUB_EVENT_NAME"
-          echo "$GITHUB_EVENT_PATH"
       - name: Build Image
         id: build_image
         run: |
@@ -34,12 +30,19 @@ jobs:
           docker tag $image_id yaoa/chrome-vnc:$GITHUB_SHA
           docker push yaoa/chrome-vnc:$GITHUB_SHA
       - name: Deploy Latest
-        if: ${{ github.head_ref == '' && github.ref == 'refs/heads/master' }}
+        if: ${{ github.head_ref == '' && github.ref == 'refs/heads/master' && github.event_name == 'push' }}
         env:
           image_id: ${{ steps.build_image.outputs.image_id }}
         run: |
           docker tag $image_id yaoa/chrome-vnc:latest
           docker push yaoa/chrome-vnc:latest
+      - name: Deploy Nightly
+        if: ${{ github.head_ref == '' && github.ref == 'refs/heads/master' && github.event_name == 'schedule' }}
+        env:
+          image_id: ${{ steps.build_image.outputs.image_id }}
+        run: |
+          docker tag $image_id yaoa/chrome-vnc:nightly
+          docker push yaoa/chrome-vnc:nightly
       - name: Deploy Develop
         if: ${{ github.head_ref == '' && startsWith(github.ref, 'refs/heads/dev') }}
         env:
@@ -48,7 +51,7 @@ jobs:
           docker tag $image_id yaoa/chrome-vnc:latest-develop
           docker push yaoa/chrome-vnc:latest-develop
       - name: Deploy Branch
-        if: ${{ github.head_ref == '' && startsWith(github.ref, 'refs/heads/') }}
+        if: ${{ github.head_ref == '' && startsWith(github.ref, 'refs/heads/') && github.event_name == 'push' }}
         env:
           image_id: ${{ steps.build_image.outputs.image_id }}
         run: |
