@@ -10,6 +10,10 @@ jobs:
     name: Build And Deploy
     steps:
       - uses: actions/checkout@v2
+      - name: Event Name
+        run: |
+          echo "$GITHUB_EVENT_NAME"
+          echo "$GITHUB_EVENT_PATH"
       - name: Build Image
         id: build_image
         run: |
