@@ -21,7 +21,7 @@ jobs:
           dockerID: ${{ secrets.dockerID }}
           dockerPassword: ${{ secrets.dockerPassword }}
         run: |
-          docker login -u $dockerID -p $dockerPassword
+          echo "$dockerPassword" | docker login --username $dockerID --password-stdin
       - name: Deploy Commit ID
         if: ${{ github.head_ref == '' && github.sha != '' }}
         env:
