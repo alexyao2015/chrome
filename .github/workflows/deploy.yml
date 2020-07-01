@@ -23,12 +23,19 @@ jobs:
         run: |
           docker login -u $dockerID -p $dockerPassword
       - name: Deploy Commit ID
-        if: ${{ github.head_ref == '' && github.sha != '' }}
+        if: ${{ github.head_ref == '' && github.sha != '' && github.event_name != 'schedule' }}
         env:
           image_id: ${{ steps.build_image.outputs.image_id }}
         run: |
           docker tag $image_id yaoa/chrome-vnc:$GITHUB_SHA
           docker push yaoa/chrome-vnc:$GITHUB_SHA
+      - name: Deploy Run Number
+        if: ${{ github.head_ref == '' && github.sha != '' }}
+        env:
+          image_id: ${{ steps.build_image.outputs.image_id }}
+        run: |
+          docker tag $image_id yaoa/chrome-vnc:$GITHUB_RUN_NUMBER
+          docker push yaoa/chrome-vnc:$GITHUB_RUN_NUMBER
       - name: Deploy Latest
         if: ${{ github.head_ref == '' && github.ref == 'refs/heads/master' && github.event_name == 'push' }}
         env:
